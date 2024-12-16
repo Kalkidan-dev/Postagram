@@ -8,6 +8,13 @@ SECRET_KEY = 'django-insecure-n)927ulcbwy)zt1&9s5%^cpqkh-(h&q2k$2t*n6kg+h&evwcx+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    'DEFAULT_FILTER_BACKENDS':
+        ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +27,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'core',
     'core.user',
-    
+    'core.auth',
+    'core.post'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -31,10 +39,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 ROOT_URLCONF = 'CoreRoot.urls'
 
 TEMPLATES = [
-    {
+    { 
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,

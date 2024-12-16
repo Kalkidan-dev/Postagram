@@ -4,9 +4,10 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager, Permiss
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.http import Http404
+from core.abstract.models import AbstractManager,AbstractModel
 
 
-class UserManager(BaseUserManager):
+class UserManager(BaseUserManager,AbstractManager):
     def get_object_by_public_id(self, public_id):
 
         try:
@@ -48,8 +49,8 @@ class UserManager(BaseUserManager):
 
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
-    public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
+class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
+    # public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
     username = models.CharField(db_index=True, max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -61,8 +62,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True)
 
-    created = models.DateTimeField(auto_now=True)
-    updated = models.DateTimeField(auto_now_add=True)
+    # created = models.DateTimeField(auto_now=True)
+    # updated = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
