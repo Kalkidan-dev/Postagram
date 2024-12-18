@@ -1,5 +1,5 @@
 from pathlib import Path
-
+from django.db.utils import OperationalError
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'core',
     'core.user',
     'core.auth',
-    'core.post'
+    'core.post',
+    'django_extensions'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -71,6 +72,9 @@ DATABASES = {
         'PASSWORD': '#kal4648',
         'HOST': 'localhost',  
         'PORT': '5432',  
+        'OPTIONS': {
+            'options': '-c search_path=public'
+        },
     }
 }
 
