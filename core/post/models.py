@@ -10,7 +10,7 @@ class Post(AbstractModel):
     body = models.TextField()
     edited = models.BooleanField(default=False)
 
-    objects = PostManager
+    objects = PostManager()
     def __str__(self):
         return f"{self.author.name}"
     class Meta:
