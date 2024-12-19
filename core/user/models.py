@@ -50,7 +50,7 @@ class UserManager(BaseUserManager,AbstractManager):
         return user
 
 class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
-    # public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
+    
     username = models.CharField(db_index=True, max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -61,6 +61,8 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
 
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True)
+
+    posts_liked = models.ManyToManyField("core_post.Post", related_name="liked_by")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
