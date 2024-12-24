@@ -1,5 +1,5 @@
 from pathlib import Path
-from django.db.utils import OperationalError
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,18 +8,7 @@ SECRET_KEY = 'django-insecure-n)927ulcbwy)zt1&9s5%^cpqkh-(h&q2k$2t*n6kg+h&evwcx+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
 
-    'DEFAULT_PAGINATION_CLASS':
-        'rest_framework.pagination.LimitOffsetPagination',
-        'PAGE_SIZE': 15,
-
-    'DEFAULT_FILTER_BACKENDS':
-        ['django_filters.rest_framework.DjangoFilterBackend'],
-}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -128,4 +117,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core_user.User'
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+        'PAGE_SIZE': 15,
+
+    'DEFAULT_FILTER_BACKENDS':
+        ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 
