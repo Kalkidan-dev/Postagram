@@ -8,3 +8,4 @@ drf-nested-routers
 django-extension
 ipython
 django_filters
+pytest-django
