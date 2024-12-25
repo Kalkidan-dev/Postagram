@@ -59,3 +59,9 @@ class TestCommentViewSet:
     def test_retrieve_anonymous(self, client, post, comment):
         response = client.get(self.endpoint + str(post.public_id) + "/comment/" + str(comment.public_id) + "/")
         assert response.status_code == status.HTTP_200_OK
+    
+    def test_create_anonymous(self, client, post):
+        data = {}
+        
+        response = client.post(self.endpoint + str(post.public_id) + "/comment/", data)
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
