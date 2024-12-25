@@ -11,4 +11,4 @@ data_user = {
 
 @pytest.fixture
 def user(db) -> User:
- return User.objects.create_user(**data_user)
+    return User.objects.create_user(**data_user)
