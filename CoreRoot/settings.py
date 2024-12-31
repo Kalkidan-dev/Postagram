@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'core',
+    'corsheaders',
     'core.user',
     'core.auth',
     'core.post',
@@ -34,6 +35,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'CoreRoot.urls'
@@ -130,4 +133,14 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS':
         ['django_filters.rest_framework.DjangoFilterBackend'],
 }
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    "x-requested-with",
+    "accept",
+    "origin",
+]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173"
+]
